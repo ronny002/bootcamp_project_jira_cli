@@ -26,12 +26,11 @@ impl Page for HomePage {
         println!("----------------------------- EPICS -----------------------------");
         println!("     id     |               name               |      status      ");
 
-        // TODO: print out epics using get_column_string(). also make sure the epics are sorted by id
         let epics = self.db.read_db()?.epics;
         for key in epics.keys().sorted() {
             let id_col = get_column_string(&key.to_string(), 11);
             let name_col = get_column_string(&epics[key].name, 32);
-            println!("{} | {} | {}", id_col, name_col, epics[key].status); //display wird nicht genutzt todo!()
+            println!("{} | {} | {}", id_col, name_col, epics[key].status); 
         }
         println!("\n");
         println!("[q] quit | [c] create epics | [:id:] navigate to epics");
@@ -138,8 +137,6 @@ impl Page for StoryDetail {
             .stories
             .get(&self.story_id)
             .ok_or_else(|| anyhow!("could not find story with id {}", &self.story_id))?;
-
-        // TODO: print out story details using get_column_string()
 
         let id_col = get_column_string(&self.story_id.to_string(), 5);
         let name_col = get_column_string(&story.name, 12);
