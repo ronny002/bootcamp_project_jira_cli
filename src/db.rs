@@ -138,7 +138,6 @@ impl JiraDatabase {
         Ok(())
     }
 }
-//todo!() try to understand MockDB impl why refCell?
 pub mod test_utils {
     use std::{cell::RefCell, collections::HashMap};
 
